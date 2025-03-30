@@ -34,3 +34,7 @@ class UserBlogView(ListView):
         )
 
         return context
+
+# @todo - dodać widok dziedziczący po DetailView, który wyświetli wybrany post. Oznacza to, że:
+# 1. należy dodać również html template
+# 2. Podlinkować odpowiednio przycisk "see more" na liście postów tak, aby kierował na widok pojedynczego wpisu.

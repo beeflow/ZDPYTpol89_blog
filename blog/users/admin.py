@@ -10,4 +10,4 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ("email", "last_name", "first_name")
     readonly_fields = ("last_login", "password", "date_joined")
 
-    # Czy da się ukryć hasło z widoku użytkownika??? <- do sprawdzenia ;)
+    # @todo Czy da się ukryć hasło z widoku użytkownika??? Jeżeli tak, to ukrywamy.
