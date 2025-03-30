@@ -118,6 +118,11 @@ STATICFILES_DIRS = [os.path.join(PROJECT_ROOT, "static")]
 STATIC_URL = 'stf/'
 STATIC_ROOT = "stf"
 
+PUBLIC_MEDIA_LOCATION = "media"
+MEDIA_URL = f"/{PUBLIC_MEDIA_LOCATION}/"
+MEDIA_ROOT = os.path.join(BASE_DIR, PUBLIC_MEDIA_LOCATION)
+UPLOAD_DIR = PUBLIC_MEDIA_LOCATION
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
