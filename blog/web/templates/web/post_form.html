@@ -1,17 +1,9 @@
 {% load static %}
+{% load form_extras %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ title }}</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <style>
-        body, h1, h2, h3, h4, h5 {
-            font-family: "Raleway", sans-serif
-        }
-    </style>
+    {% include 'globals/header.html' %}
 </head>
 <body class="w3-light-grey">
 
@@ -30,10 +22,12 @@ and is wrapped around the whole page content, except for the footer in this exam
 
         <!-- Blog entries -->
         <div class="w3-col l8 s12">
-            <form class="vertical" method="post" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form }}
-                <input type="submit" value="save">
+                {{ form|as_bootstrap }}
+                <div class="md-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </form>
         </div>
 

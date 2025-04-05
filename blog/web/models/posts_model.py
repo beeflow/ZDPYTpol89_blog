@@ -20,7 +20,10 @@ class Post(models.Model):
         quality=100,
         upload_to=get_photo_path_name,
     )
-    content = models.TextField(blank=True, null=True)
+    content = models.TextField(
+        blank=True, null=True,
+        help_text="The content of the post",
+    )
 
     def __str__(self) -> str:
         return self.title

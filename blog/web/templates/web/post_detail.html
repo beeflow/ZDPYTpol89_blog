@@ -2,16 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ title }}</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <style>
-        body, h1, h2, h3, h4, h5 {
-            font-family: "Raleway", sans-serif
-        }
-    </style>
+{% include 'globals/header.html' %}
 </head>
 <body class="w3-light-grey">
 
@@ -30,10 +21,12 @@ and is wrapped around the whole page content, except for the footer in this exam
 
         <!-- Blog entries -->
         <div class="w3-col l8 s12">
+            <img src="{% if object.header_image %}{{ object.header_image.url }}{% endif %}" alt="Post header">
 {#            @todo!! Dlaczego działają oba obiekty: post i object? #}
             <h3>{{ post.title }}</h3>
             <p>{{ object.teaser }}</p>
             <p>{{ object.content|linebreaks }}</p>
+            <p><a href="{% url 'update_post' pk=object.pk %}" class="btn btn-outline-info">Update</a></p>
         </div>
 
         <!-- Introduction menu -->

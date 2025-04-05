@@ -1,0 +1,6 @@
+Django==4.2.20
+django-jazzmin==2.4.9
+django-resized==1.0.3
+pillow==11.1.0
+email_validator==2.2.0
+validate_email==1.3
