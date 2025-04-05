@@ -10,9 +10,7 @@ from utils.photo_path import get_photo_path_name
 
 class Post(models.Model):
     title = models.CharField(max_length=100, null=False, blank=False)
-
-    # @todo - zmienić nazwę content na teaser - Czyli krótki opis do wyświetlania na liście postów
-    content = models.TextField(null=False, blank=False)
+    teaser = models.CharField(max_length=250, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     header_image = ResizedImageField(
@@ -21,8 +19,7 @@ class Post(models.Model):
         quality=100,
         upload_to=get_photo_path_name,
     )
-
-    # @todo - dodać pole content, które będzie zawierało ciąg dalszy wpisu - wyświetlany na widoku posta
+    content = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.title

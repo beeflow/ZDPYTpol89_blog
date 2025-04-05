@@ -1,6 +1,6 @@
 <div class="w3-card-4 w3-margin w3-white">
     {% if post.header_image %}
-        <img src="media/{{ post.header_image }}" alt="Nature" style="width:100%">
+        <img src="{{ post.header_image.url }}" alt="Nature" style="width:100%">
     {% endif %}
     <div class="w3-container">
         <h3><b>{{ post.title }}</b></h3>
@@ -9,13 +9,14 @@
     </div>
 
     <div class="w3-container">
-        <p>{{ post.content }}</p>
+        <p>{{ post.teaser }}</p>
         <div class="w3-row">
             <div class="w3-col m8 s12">
                 <p>
-                    <button class="w3-button w3-padding-large w3-white w3-border"><b>see more
+                    <a href="{% url 'user_post' pk=post.id %}"
+                            class="btn btn-default w3-button w3-padding-large w3-white w3-border"><b>see more
                         &raquo;</b>
-                    </button>
+                    </a>
                 </p>
             </div>
             <div class="w3-col m4 w3-hide-small">

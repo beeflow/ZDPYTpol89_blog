@@ -12,7 +12,6 @@ User = get_user_model()
 
 class UserBlogView(ListView):
     model = Post
-    template_name = 'globals/index.html'
 
     def get(self, request, pk, *args, **kwargs):
         self.user = get_object_or_404(User, pk=pk)
@@ -28,13 +27,8 @@ class UserBlogView(ListView):
         context.update(
             {
                 'title': f'Blog by: {self.user}',
-                'user_name': self.user,
-                'user_about': self.user.about_user
+                'blog_owner': self.user,
             }
         )
 
         return context
-
-# @todo - dodać widok dziedziczący po DetailView, który wyświetli wybrany post. Oznacza to, że:
-# 1. należy dodać również html template
-# 2. Podlinkować odpowiednio przycisk "see more" na liście postów tak, aby kierował na widok pojedynczego wpisu.

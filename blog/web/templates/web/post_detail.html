@@ -30,9 +30,10 @@ and is wrapped around the whole page content, except for the footer in this exam
 
         <!-- Blog entries -->
         <div class="w3-col l8 s12">
-            {% for post in object_list %}
-                {% include 'globals/post_list_element.html' %}
-            {% endfor %}
+{#            @todo!! Dlaczego działają oba obiekty: post i object? #}
+            <h3>{{ post.title }}</h3>
+            <p>{{ object.teaser }}</p>
+            <p>{{ object.content|linebreaks }}</p>
         </div>
 
         <!-- Introduction menu -->

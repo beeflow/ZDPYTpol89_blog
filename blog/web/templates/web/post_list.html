@@ -38,6 +38,15 @@ and is wrapped around the whole page content, except for the footer in this exam
 
         <!-- Introduction menu -->
         <div class="w3-col l4">
+            <!-- About Card -->
+            <div class="w3-card w3-margin w3-margin-top">
+                <img src="{{ blog_owner.photo.url }}" style="max-width: 200px">
+                <div class="w3-container w3-white">
+                    <h4><b>{{ blog_owner }}</b></h4>
+                    <p>{{ blog_owner.about }}</p>
+                </div>
+            </div>
+            <hr>
             <!-- Posts -->
             <div class="w3-card w3-margin">
                 <div class="w3-container w3-padding">

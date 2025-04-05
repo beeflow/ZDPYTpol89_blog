@@ -2,10 +2,13 @@
 
 Author Rafal Przetakowski <rafal.p@beeflow.co.uk>"""
 from django.urls import path
+from django.views.generic import DetailView, ListView
 
-from web.views import WebView, UserBlogView
+from web.models import Post
+from web.views import UserBlogView
 
 urlpatterns = [
-    path('', WebView.as_view(), name='index'),
+    path('', ListView.as_view(model=Post), name='index'),
     path('<int:pk>', UserBlogView.as_view(), name='user_blog'),
+    path('post/<int:pk>', DetailView.as_view(model=Post), name='user_post'),
 ]

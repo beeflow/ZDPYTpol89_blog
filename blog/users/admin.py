@@ -9,5 +9,11 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ("last_name", "first_name", "email")
     list_display = ("email", "last_name", "first_name")
     readonly_fields = ("last_login", "password", "date_joined")
-
-    # @todo Czy da się ukryć hasło z widoku użytkownika??? Jeżeli tak, to ukrywamy.
+    #
+    # def get_fields(self, request, obj = None):
+    #     fieldsets = super().get_fields(request, obj)
+    #
+    #     return tuple(
+    #         (name, {'fields': [f for f in opts['fields'] if f != 'password']})
+    #         for name, opts in fieldsets
+    #     )
