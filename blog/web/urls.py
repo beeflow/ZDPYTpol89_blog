@@ -2,7 +2,7 @@
 
 Author Rafal Przetakowski <rafal.p@beeflow.co.uk>"""
 from django.urls import path
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, UpdateView
 
 from web.models import Post
 from web.views import UserBlogView
@@ -10,5 +10,12 @@ from web.views import UserBlogView
 urlpatterns = [
     path('', ListView.as_view(model=Post), name='index'),
     path('<int:pk>', UserBlogView.as_view(), name='user_blog'),
+    path(
+        'post/edit/<int:pk>',
+        UpdateView.as_view(
+            model=Post, fields=("title", "teaser", "content"), success_url="/post/{id}"
+        ),
+        name='update_post'
+    ),
     path('post/<int:pk>', DetailView.as_view(model=Post), name='user_post'),
 ]
