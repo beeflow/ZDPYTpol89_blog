@@ -27,9 +27,11 @@ class CustomUpdateView(UpdateView):
 
 
 class HtmlViewSet:
+    fields = None
+    fields_by_view = {}
+    template_names = {}
+
     model = None
-    fields = []
-    template_name = None
     prefix = None
     template_prefix = None
 
@@ -40,7 +42,8 @@ class HtmlViewSet:
 
         fields = initkwargs.get('fields', [])
         prefix = initkwargs.get('prefix', '')
-        template_name = initkwargs.get('template_name', None)
+        template_names = initkwargs.get('template_names', {})
+        fields_by_view = initkwargs.get('fields_by_view', {})
 
         model_name = model.__name__.lower()
         template_prefix = initkwargs.get('template_prefix', '') or model_name
@@ -58,15 +61,15 @@ class HtmlViewSet:
                 route_names['list'],
                 ListView.as_view(
                     model=model,
-                    template_name=template_name or f"{template_prefix}/{model_name}_list.html"
+                    template_name=template_names.get('list') or f"{template_prefix}/{model_name}_list.html"
                 ), name=f'{model_name}-list'
             ),
             path(
                 route_names['create'],
                 CustomCreateView.as_view(
                     model=model,
-                    fields=fields,
-                    template_name=template_name or f"{template_prefix}/{model_name}_form.html",
+                    fields=list(fields) + list(fields_by_view.get('create', [])),
+                    template_name=template_names.get('create') or f"{template_prefix}/{model_name}_form.html",
                     app_prefix=prefix,
                 ), name=f'{model_name}-create'
             ),
@@ -74,8 +77,8 @@ class HtmlViewSet:
                 route_names['update'],
                 CustomUpdateView.as_view(
                     model=model,
-                    fields=fields,
-                    template_name=template_name or f"{template_prefix}/{model_name}_form.html",
+                    fields=list(fields) + list(fields_by_view.get('update', [])),
+                    template_name=template_names.get('update') or f"{template_prefix}/{model_name}_form.html",
                     app_prefix=prefix,
                 ), name=f'{model_name}-edit'
             ),
@@ -83,14 +86,14 @@ class HtmlViewSet:
                 route_names['delete'],
                 DeleteView.as_view(
                     model=model,
-                    template_name=template_name or f"{template_prefix}/{model_name}_confirm_delete.html",
+                    template_name=template_names.get('delete') or f"{template_prefix}/{model_name}_confirm_delete.html",
                 ), name=f'{model_name}-delete'
             ),
             path(
                 route_names['detail'],
                 DetailView.as_view(
                     model=model,
-                    template_name=template_name or f"{template_prefix}/{model_name}_detail.html",
+                    template_name=template_names.get('detail') or f"{template_prefix}/{model_name}_detail.html",
                 ), name=f'{model_name}-detail'
             ),
         ]

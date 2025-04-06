@@ -18,8 +18,13 @@ from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import include, path
+from django.views.generic import RedirectView
 
 urlpatterns = [
+    # Pozbywamy się problemu z takimi kwiatkami jak '/<pk>' do których można
+    # przypasować cokolwiek! - bardzo nieładnie ;P
+    path("favicon.ico", RedirectView.as_view(url=settings.STATIC_URL + "img/favicon.ico")),
+
     path('', include('web.urls')),
     path('admin/', admin.site.urls),
 ]
