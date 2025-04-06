@@ -3,7 +3,6 @@
 Author Rafal Przetakowski <rafal.p@beeflow.co.uk>"""
 from django.conf import settings
 from django.db import models
-from django.urls import reverse_lazy
 from django_resized import ResizedImageField
 
 from utils.photo_path import get_photo_path_name
