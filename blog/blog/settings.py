@@ -37,6 +37,7 @@ GLOBAL_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django_render_partial"
 ]
 
 LOCAL_APPS = [

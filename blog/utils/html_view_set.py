@@ -7,7 +7,7 @@ from django.urls import path
 from django.utils.decorators import classonlymethod
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
-
+# @todo, dlaczego nie działa app_prefix w przypadku komentarzy???
 class CustomCreateView(CreateView):
     app_prefix: Optional[str] = None
 
@@ -25,7 +25,7 @@ class CustomUpdateView(UpdateView):
         app_prefix = self.kwargs.get('app_prefix')
         return f"/{app_prefix}/{self.object.pk}" if app_prefix else f"/{self.object.pk}"
 
-
+# @todo - dołożyć obsługę parametru wejściowego "success_url" (jak w urls.py)
 class HtmlViewSet:
     fields = None
     fields_by_view = {}
@@ -36,7 +36,7 @@ class HtmlViewSet:
     template_prefix = None
 
     @classonlymethod
-    def as_viewset(cls, **initkwargs):
+    def as_viewset(cls, **initkwargs) -> list:
         model = initkwargs.get('model')
         assert model is not None, "You must provide model"  # noqa
 

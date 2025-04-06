@@ -1,0 +1,14 @@
+{% for comment in object_list %}
+    <div class="w3-card-4 w3-margin w3-white">
+        <div class="w3-container">
+            <h5>Created at: <span class="w3-opacity">{{ comment.created_at }}</span></h5>
+            <h5>Author: <span class="w3-opacity">{{ comment.author }}</span></h5>
+        </div>
+
+        <div class="w3-container">
+            <p>{{ comment }}</p>
+        </div>
+
+    </div>
+    <hr>
+{% endfor %}
