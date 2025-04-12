@@ -12,6 +12,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100, null=False, blank=False)
     teaser = models.CharField(max_length=250, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    published_at = models.DateTimeField(null=True, blank=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     header_image = ResizedImageField(
         null=True, blank=True,

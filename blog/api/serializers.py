@@ -20,7 +20,9 @@ class PostListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = [
+            'id', 'title', 'teaser', 'created_at', 'created_by', 'header_image', 'content'
+        ]
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
@@ -34,4 +36,4 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = "__all__"
+        fields = "__all__"  # <--- bardzo paskudne ;)
