@@ -19,8 +19,18 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import include, path
 from django.views.generic import RedirectView
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 urlpatterns = [
+    # schema jako JSON
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+
+    # dokumentacja Swagger UI
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+
+    # dokumentacja Redoc (ładniejsza)
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+
     # Pozbywamy się problemu z takimi kwiatkami jak '/<pk>' do których można
     # przypasować cokolwiek! - bardzo nieładnie ;P
     path("favicon.ico", RedirectView.as_view(url=settings.STATIC_URL + "img/favicon.ico")),

@@ -39,6 +39,8 @@ GLOBAL_APPS = [
     'django.contrib.staticfiles',
     "django_render_partial",
     "rest_framework",
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
 ]
 
 LOCAL_APPS = [
@@ -164,7 +166,7 @@ LOGGING = {
 }
 
 REST_FRAMEWORK = {
-
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_RENDERER_CLASSES': (
         'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
         'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
@@ -178,4 +180,11 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.parser.CamelCaseJSONParser',
         # Any other parsers
     ),
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Super Duper Blog – API',
+    'DESCRIPTION': 'Documentation for the SDB platform. Handle with care 😉',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
 }
