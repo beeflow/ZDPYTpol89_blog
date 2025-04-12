@@ -25,6 +25,8 @@ urlpatterns = [
     # przypasować cokolwiek! - bardzo nieładnie ;P
     path("favicon.ico", RedirectView.as_view(url=settings.STATIC_URL + "img/favicon.ico")),
 
+    path("api/", include('api.urls')),
+    path("api/v2/", include('api_v2.urls')),
     path('blog/', include('web.urls')),
     path('admin/', admin.site.urls),
 ]
