@@ -1,4 +1,4 @@
-Django==4.2.20
+Django==4.2.21
 django-jazzmin==2.4.9
 django-resized==1.0.3
 pillow==11.1.0
